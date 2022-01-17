@@ -7,11 +7,10 @@ class ApiUser(APIBase):
         url = f'{self.manager.data.branch}/api/users'
         return self.request_get(url, params)
 
-    def add_user(self):
-        urn = '/api/users'
-        uri = self.manager.data.branch + urn
-        body = {
-            "name": "test 12",
-            "job": "leader"
-        }
-        return self.request_post(uri, body)
+    def add_user(self, body):
+        url = f'{self.manager.data.branch}/api/users'
+        return self.request_post(url, body)
+
+    def edit_user(self, user_id, body, params=None):
+        url = f'{self.manager.data.branch}/api/users/{user_id}'
+        return self.request_put(url, body, params=params)

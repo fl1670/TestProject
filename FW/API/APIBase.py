@@ -9,22 +9,13 @@ class APIBase(FWBase):
         return get.json()
 
     def request_post(self, url, body, params=None):
-        post = requests.post(url, body, params)
+        post = requests.post(url, body, params=params)
         return post.json()
 
-    def request_put(self, user_id):
-        urn = '/api/users/' + str(user_id)
-        uri = self.manager.data.branch + urn
-        params = {}
-
-        body = {
-            "email": "tobias",
-            "first_name": "Tobias123",
-            "last_name": "Funke123",
-            "avatar": "https"
-        }
-        put = requests.patch(uri, body, params=params)
+    def request_put(self, url, body, params=None):
+        put = requests.patch(url, body, params=params)
         return put.json()
+
 
     def get_single_user(self, user_id):
         urn = '/api/users/' + str(user_id)
