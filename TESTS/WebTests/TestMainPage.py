@@ -1,20 +1,19 @@
 import time
 
 from TESTS.WebTests.WebTestBase import WebTestBase
-from selenium import webdriver
-from selenium.webdriver.common.by import By
 
 
 class TestMainPage(WebTestBase):
 
-    def test_qwert(self):
-        self.driver = webdriver.Chrome()
-        self.driver.get('https://yandex.ru/')
+    def test_search_result(self):
+        self.APP.web_main_page.input_text_in_search('Test')
+        self.APP.web_main_page.click_button_submit()
 
-        element = self.driver.find_element(By.XPATH, '//input[@name="text"]')
+        time.sleep(2)
 
-        element.send_keys('Test')
+        search_result_text = self.APP.web_search.get_search_result_text()
 
-        self.driver.quit()
+        for text in search_result_text:
+            assert 'Тест' in text
 
 
