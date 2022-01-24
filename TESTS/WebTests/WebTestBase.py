@@ -1,18 +1,16 @@
 from TESTS.TestBase import TestBase
-from selenium import webdriver
 
 
 class WebTestBase(TestBase):
 
     def setup_class(self):
-        self.driver = webdriver.Chrome()
+        pass
 
     def setup_method(self):
-        self.driver.get('https://yandex.ru/')
+        self.APP.web_any_page.goto_url('https://yandex.ru/')
 
     def teardown_method(self):
         pass
 
     def teardown_class(self):
-        self.driver.quit()
-
+        self.APP.driver_instance.stop_driver()
