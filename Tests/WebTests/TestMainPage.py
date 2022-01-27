@@ -1,12 +1,12 @@
-from TESTS.WebTests.WebTestBase import WebTestBase
+from Tests.WebTests.WebBase import WebBase
 import allure
 
 
-@allure.feature('')
-@allure.story('')
-class TestMainPage(WebTestBase):
+@allure.feature('Web - Tests')
+@allure.story('TestMainPage')
+class TestMainPage(WebBase):
 
-    @allure.title('')
+    @allure.title('test_search_result')
     def test_search_result(self):
         main_page = self.APP.web_main_page
         search = main_page.input_text_in_search('Test').click_button_submit()

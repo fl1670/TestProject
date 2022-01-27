@@ -1,8 +1,12 @@
+import allure
 import pytest
-from TESTS.TestBase import TestBase
+from Tests.Base import Base
 
 
-class TestRequests(TestBase):
+@allure.feature('API - Tests')
+@allure.story('TestRequests')
+class TestRequests(Base):
+
     test_data = [
     {
         'page': 3,
@@ -19,6 +23,7 @@ class TestRequests(TestBase):
     ]
 
     @pytest.mark.parametrize('params', test_data)
+    @allure.title('Получение даных пользователя')
     def test_request_get(self, params):
 
         request = self.APP.api_user.get_users(params)
@@ -41,10 +46,12 @@ class TestRequests(TestBase):
     ]
 
     @pytest.mark.parametrize('params', test_data2)
+    @allure.title('test_request_get2')
     def test_request_get2(self, params):
         request = self.APP.api_user.get_users(params)
         assert params['per_page'] == len(request['data'])
 
+    @allure.title('test_edit_user')
     def test_edit_user(self):
         user = self.APP.api_user.get_users({'page': 3, "per_page": 1})
         user_id = user['data'][0]['id']
@@ -63,6 +70,7 @@ class TestRequests(TestBase):
         assert body["last_name"] == edit_user['last_name']
         assert body["avatar"] == edit_user['avatar']
 
+    @allure.title('test_add_user')
     def test_add_user(self):
         body = {
             "name": "Name",

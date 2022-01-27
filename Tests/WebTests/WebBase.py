@@ -1,7 +1,7 @@
-from TESTS.TestBase import TestBase
+from Tests.Base import Base
 
 
-class WebTestBase(TestBase):
+class WebBase(Base):
 
     def setup_class(self):
         pass

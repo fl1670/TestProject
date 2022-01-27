@@ -1,7 +1,7 @@
 from FW.APP import ApplicationManager
 
 
-class TestBase:
+class Base:
 
     APP = ApplicationManager()
 
